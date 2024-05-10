@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fa6f2e09b67445b3add9f39c2e440846" Name="Diagram1" ZoomLevel="61">
+        <EntityTypeShape EntityType="QLXinViecModel.Account" Width="1.5" PointX="1.5" PointY="16.625" />
+        <EntityTypeShape EntityType="QLXinViecModel.CompanyImage" Width="1.5" PointX="3" PointY="12.5" />
+        <EntityTypeShape EntityType="QLXinViecModel.CompanyProfile" Width="1.5" PointX="0.75" PointY="11.625" />
+        <EntityTypeShape EntityType="QLXinViecModel.JobPost" Width="1.5" PointX="3" PointY="6.75" />
+        <EntityTypeShape EntityType="QLXinViecModel.Location" Width="1.5" PointX="0.75" PointY="8.375" />
+        <EntityTypeShape EntityType="QLXinViecModel.Mail" Width="1.5" PointX="3.75" PointY="15.75" />
+        <EntityTypeShape EntityType="QLXinViecModel.Skill" Width="1.5" PointX="5.25" PointY="11.5" />
+        <EntityTypeShape EntityType="QLXinViecModel.SocialPost" Width="1.5" PointX="7.5" PointY="13.375" />
+        <EntityTypeShape EntityType="QLXinViecModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QLXinViecModel.UserApplyJob" Width="1.5" PointX="5.25" PointY="7.875" />
+        <EntityTypeShape EntityType="QLXinViecModel.UserEducation" Width="1.5" PointX="9.75" PointY="12" />
+        <EntityTypeShape EntityType="QLXinViecModel.UserPersonalProject" Width="1.5" PointX="9.75" PointY="8.875" />
+        <EntityTypeShape EntityType="QLXinViecModel.UserProfile" Width="1.5" PointX="7.5" PointY="8.125" />
+        <EntityTypeShape EntityType="QLXinViecModel.UserWorkExperience" Width="1.5" PointX="9.75" PointY="5.75" />
+        <EntityTypeShape EntityType="QLXinViecModel.YearExperience" Width="1.5" PointX="0.75" PointY="5.25" />
+        <AssociationConnector Association="QLXinViecModel.FK__CompanyProfi__Id__4CA06362" />
+        <AssociationConnector Association="QLXinViecModel.FK__Mail__FromId__6EF57B66" />
+        <AssociationConnector Association="QLXinViecModel.FK__Mail__ToId__6FE99F9F" />
+        <AssociationConnector Association="QLXinViecModel.FK__SocialPos__Accou__68487DD7" />
+        <AssociationConnector Association="QLXinViecModel.FK__UserProfile__Id__412EB0B6" />
+        <AssociationConnector Association="QLXinViecModel.FK_CompanyImage_CompanyProfile" />
+        <AssociationConnector Association="QLXinViecModel.FK__JobPost__Company__5165187F" />
+        <AssociationConnector Association="QLXinViecModel.FK__JobPost__Locatio__5070F446" />
+        <AssociationConnector Association="QLXinViecModel.FK__JobPost__YearExp__52593CB8" />
+        <AssociationConnector Association="QLXinViecModel.FK__UserApply__JobPo__59FA5E80" />
+        <AssociationConnector Association="QLXinViecModel.FK__UserApply__UserI__59063A47" />
+        <AssociationConnector Association="QLXinViecModel.FK__UserEduca__UserI__440B1D61" />
+        <AssociationConnector Association="QLXinViecModel.FK__UserPerso__UserI__49C3F6B7" />
+        <AssociationConnector Association="QLXinViecModel.FK__UserWorkE__UserI__46E78A0C" />
+        <AssociationConnector Association="QLXinViecModel.Following" />
+        <AssociationConnector Association="QLXinViecModel.JobSkill" />
+        <AssociationConnector Association="QLXinViecModel.SocialPostSkill" />
+        <AssociationConnector Association="QLXinViecModel.UserFollowJob" />
+        <AssociationConnector Association="QLXinViecModel.UserSkill" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

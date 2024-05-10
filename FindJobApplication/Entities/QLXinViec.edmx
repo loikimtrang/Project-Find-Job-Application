@@ -1,0 +1,1355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QLXinViecModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Avatar" Type="image" />
+        </EntityType>
+        <EntityType Name="CompanyImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="ImageContent" Type="image" />
+        </EntityType>
+        <EntityType Name="CompanyProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+          <Property Name="Address" Type="text" />
+          <Property Name="DateEstablish" Type="date" />
+          <Property Name="CompanySize" Type="int" />
+          <Property Name="CompanyLink" Type="text" />
+          <Property Name="Reason" Type="text" />
+          <Property Name="Overview" Type="text" />
+          <Property Name="TaxCode" Type="varchar" MaxLength="20" />
+          <Property Name="BusinessLicense" Type="text" />
+        </EntityType>
+        <EntityType Name="Following">
+          <Key>
+            <PropertyRef Name="FollowingId" />
+            <PropertyRef Name="FollowedId" />
+          </Key>
+          <Property Name="FollowingId" Type="int" Nullable="false" />
+          <Property Name="FollowedId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JobPost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RecruitmentNumber" Type="int" />
+          <Property Name="Salary" Type="int" Nullable="false" />
+          <Property Name="Description" Type="text" Nullable="false" />
+          <Property Name="Requirement" Type="text" />
+          <Property Name="Prioritize" Type="text" />
+          <Property Name="Benefit" Type="text" />
+          <Property Name="PostDate" Type="date" Nullable="false" />
+          <Property Name="ExpireDate" Type="date" Nullable="false" />
+          <Property Name="Address" Type="text" />
+          <Property Name="YearExperienceId" Type="int" Nullable="false" />
+          <Property Name="LocationId" Type="int" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JobSkill">
+          <Key>
+            <PropertyRef Name="JobPostId" />
+            <PropertyRef Name="SkillId" />
+          </Key>
+          <Property Name="JobPostId" Type="int" Nullable="false" />
+          <Property Name="SkillId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromId" Type="int" Nullable="false" />
+          <Property Name="ToId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="text" />
+          <Property Name="Contents" Type="text" />
+          <Property Name="AttachFile" Type="text" />
+          <Property Name="SendDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SocialPost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="text" Nullable="false" />
+          <Property Name="Contents" Type="text" />
+          <Property Name="PostDate" Type="date" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SocialPostSkill">
+          <Key>
+            <PropertyRef Name="SocialPostId" />
+            <PropertyRef Name="SkillId" />
+          </Key>
+          <Property Name="SocialPostId" Type="int" Nullable="false" />
+          <Property Name="SkillId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UserApplyJob">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="JobPostId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="JobPostId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CoverLetter" Type="text" />
+          <Property Name="AppliedAt" Type="date" Nullable="false" />
+          <Property Name="CvAttachment" Type="text" />
+        </EntityType>
+        <EntityType Name="UserEducation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Major" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="From" Type="date" Nullable="false" />
+          <Property Name="To" Type="date" Nullable="false" />
+          <Property Name="Detail" Type="text" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserFollowJob">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="JobPostId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="JobPostId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPersonalProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="From" Type="date" Nullable="false" />
+          <Property Name="To" Type="date" Nullable="false" />
+          <Property Name="Description" Type="text" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="255" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="Gender" Type="varchar" MaxLength="20" />
+          <Property Name="Address" Type="text" />
+          <Property Name="PersonalLink" Type="text" />
+          <Property Name="AboutMe" Type="text" />
+        </EntityType>
+        <EntityType Name="UserSkill">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="SkillId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="SkillId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserWorkExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobTitle" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="From" Type="date" Nullable="false" />
+          <Property Name="To" Type="date" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="YearExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__CompanyProfi__Id__4CA06362">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="CompanyProfile" Type="Self.CompanyProfile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyProfile">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Following__Follo__6477ECF3">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Following" Type="Self.Following" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Following">
+              <PropertyRef Name="FollowingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Following__Follo__656C112C">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Following" Type="Self.Following" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Following">
+              <PropertyRef Name="FollowedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JobPost__Company__5165187F">
+          <End Role="CompanyProfile" Type="Self.CompanyProfile" Multiplicity="1" />
+          <End Role="JobPost" Type="Self.JobPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobPost">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JobPost__Locatio__5070F446">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="JobPost" Type="Self.JobPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobPost">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JobPost__YearExp__52593CB8">
+          <End Role="YearExperience" Type="Self.YearExperience" Multiplicity="1" />
+          <End Role="JobPost" Type="Self.JobPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YearExperience">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobPost">
+              <PropertyRef Name="YearExperienceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JobSkill__JobPos__5535A963">
+          <End Role="JobPost" Type="Self.JobPost" Multiplicity="1" />
+          <End Role="JobSkill" Type="Self.JobSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobPost">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobSkill">
+              <PropertyRef Name="JobPostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JobSkill__SkillI__5629CD9C">
+          <End Role="Skill" Type="Self.Skill" Multiplicity="1" />
+          <End Role="JobSkill" Type="Self.JobSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobSkill">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Mail__FromId__6EF57B66">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Mail" Type="Self.Mail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mail">
+              <PropertyRef Name="FromId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Mail__ToId__6FE99F9F">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Mail" Type="Self.Mail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mail">
+              <PropertyRef Name="ToId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SocialPos__Accou__68487DD7">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="SocialPost" Type="Self.SocialPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SocialPost">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SocialPos__Skill__6C190EBB">
+          <End Role="Skill" Type="Self.Skill" Multiplicity="1" />
+          <End Role="SocialPostSkill" Type="Self.SocialPostSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SocialPostSkill">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SocialPos__Socia__6B24EA82">
+          <End Role="SocialPost" Type="Self.SocialPost" Multiplicity="1" />
+          <End Role="SocialPostSkill" Type="Self.SocialPostSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SocialPost">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SocialPostSkill">
+              <PropertyRef Name="SocialPostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserApply__JobPo__59FA5E80">
+          <End Role="JobPost" Type="Self.JobPost" Multiplicity="1" />
+          <End Role="UserApplyJob" Type="Self.UserApplyJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobPost">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserApplyJob">
+              <PropertyRef Name="JobPostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserApply__UserI__59063A47">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="UserApplyJob" Type="Self.UserApplyJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserApplyJob">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserEduca__UserI__440B1D61">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="UserEducation" Type="Self.UserEducation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserEducation">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserFollo__JobPo__619B8048">
+          <End Role="JobPost" Type="Self.JobPost" Multiplicity="1" />
+          <End Role="UserFollowJob" Type="Self.UserFollowJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobPost">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserFollowJob">
+              <PropertyRef Name="JobPostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserFollo__UserI__60A75C0F">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="UserFollowJob" Type="Self.UserFollowJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserFollowJob">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserPerso__UserI__49C3F6B7">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="UserPersonalProject" Type="Self.UserPersonalProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPersonalProject">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserProfile__Id__412EB0B6">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserSkill__Skill__5DCAEF64">
+          <End Role="Skill" Type="Self.Skill" Multiplicity="1" />
+          <End Role="UserSkill" Type="Self.UserSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserSkill">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserSkill__UserI__5CD6CB2B">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="UserSkill" Type="Self.UserSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserSkill">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserWorkE__UserI__46E78A0C">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="UserWorkExperience" Type="Self.UserWorkExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserWorkExperience">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyImage_CompanyProfile">
+          <End Role="CompanyProfile" Type="Self.CompanyProfile" Multiplicity="1" />
+          <End Role="CompanyImage" Type="Self.CompanyImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyImage">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLXinViecModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyImage" EntityType="Self.CompanyImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyProfile" EntityType="Self.CompanyProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Following" EntityType="Self.Following" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobPost" EntityType="Self.JobPost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobSkill" EntityType="Self.JobSkill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mail" EntityType="Self.Mail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SocialPost" EntityType="Self.SocialPost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SocialPostSkill" EntityType="Self.SocialPostSkill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserApplyJob" EntityType="Self.UserApplyJob" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserEducation" EntityType="Self.UserEducation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserFollowJob" EntityType="Self.UserFollowJob" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPersonalProject" EntityType="Self.UserPersonalProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserSkill" EntityType="Self.UserSkill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserWorkExperience" EntityType="Self.UserWorkExperience" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YearExperience" EntityType="Self.YearExperience" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CompanyProfi__Id__4CA06362" Association="Self.FK__CompanyProfi__Id__4CA06362">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="CompanyProfile" EntitySet="CompanyProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Following__Follo__6477ECF3" Association="Self.FK__Following__Follo__6477ECF3">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Following" EntitySet="Following" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Following__Follo__656C112C" Association="Self.FK__Following__Follo__656C112C">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Following" EntitySet="Following" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JobPost__Company__5165187F" Association="Self.FK__JobPost__Company__5165187F">
+            <End Role="CompanyProfile" EntitySet="CompanyProfile" />
+            <End Role="JobPost" EntitySet="JobPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JobPost__Locatio__5070F446" Association="Self.FK__JobPost__Locatio__5070F446">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="JobPost" EntitySet="JobPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JobPost__YearExp__52593CB8" Association="Self.FK__JobPost__YearExp__52593CB8">
+            <End Role="YearExperience" EntitySet="YearExperience" />
+            <End Role="JobPost" EntitySet="JobPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JobSkill__JobPos__5535A963" Association="Self.FK__JobSkill__JobPos__5535A963">
+            <End Role="JobPost" EntitySet="JobPost" />
+            <End Role="JobSkill" EntitySet="JobSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JobSkill__SkillI__5629CD9C" Association="Self.FK__JobSkill__SkillI__5629CD9C">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="JobSkill" EntitySet="JobSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Mail__FromId__6EF57B66" Association="Self.FK__Mail__FromId__6EF57B66">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Mail" EntitySet="Mail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Mail__ToId__6FE99F9F" Association="Self.FK__Mail__ToId__6FE99F9F">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Mail" EntitySet="Mail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SocialPos__Accou__68487DD7" Association="Self.FK__SocialPos__Accou__68487DD7">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="SocialPost" EntitySet="SocialPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SocialPos__Skill__6C190EBB" Association="Self.FK__SocialPos__Skill__6C190EBB">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="SocialPostSkill" EntitySet="SocialPostSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SocialPos__Socia__6B24EA82" Association="Self.FK__SocialPos__Socia__6B24EA82">
+            <End Role="SocialPost" EntitySet="SocialPost" />
+            <End Role="SocialPostSkill" EntitySet="SocialPostSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserApply__JobPo__59FA5E80" Association="Self.FK__UserApply__JobPo__59FA5E80">
+            <End Role="JobPost" EntitySet="JobPost" />
+            <End Role="UserApplyJob" EntitySet="UserApplyJob" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserApply__UserI__59063A47" Association="Self.FK__UserApply__UserI__59063A47">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="UserApplyJob" EntitySet="UserApplyJob" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserEduca__UserI__440B1D61" Association="Self.FK__UserEduca__UserI__440B1D61">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="UserEducation" EntitySet="UserEducation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserFollo__JobPo__619B8048" Association="Self.FK__UserFollo__JobPo__619B8048">
+            <End Role="JobPost" EntitySet="JobPost" />
+            <End Role="UserFollowJob" EntitySet="UserFollowJob" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserFollo__UserI__60A75C0F" Association="Self.FK__UserFollo__UserI__60A75C0F">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="UserFollowJob" EntitySet="UserFollowJob" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPerso__UserI__49C3F6B7" Association="Self.FK__UserPerso__UserI__49C3F6B7">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="UserPersonalProject" EntitySet="UserPersonalProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserProfile__Id__412EB0B6" Association="Self.FK__UserProfile__Id__412EB0B6">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserSkill__Skill__5DCAEF64" Association="Self.FK__UserSkill__Skill__5DCAEF64">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="UserSkill" EntitySet="UserSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserSkill__UserI__5CD6CB2B" Association="Self.FK__UserSkill__UserI__5CD6CB2B">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="UserSkill" EntitySet="UserSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserWorkE__UserI__46E78A0C" Association="Self.FK__UserWorkE__UserI__46E78A0C">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="UserWorkExperience" EntitySet="UserWorkExperience" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyImage_CompanyProfile" Association="Self.FK_CompanyImage_CompanyProfile">
+            <End Role="CompanyProfile" EntitySet="CompanyProfile" />
+            <End Role="CompanyImage" EntitySet="CompanyImage" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLXinViecModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QLXinViecDFContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="QLXinViecModel.Account" />
+          <EntitySet Name="CompanyImages" EntityType="QLXinViecModel.CompanyImage" />
+          <EntitySet Name="CompanyProfiles" EntityType="QLXinViecModel.CompanyProfile" />
+          <EntitySet Name="JobPosts" EntityType="QLXinViecModel.JobPost" />
+          <EntitySet Name="Locations" EntityType="QLXinViecModel.Location" />
+          <EntitySet Name="Mails" EntityType="QLXinViecModel.Mail" />
+          <EntitySet Name="Skills" EntityType="QLXinViecModel.Skill" />
+          <EntitySet Name="SocialPosts" EntityType="QLXinViecModel.SocialPost" />
+          <EntitySet Name="sysdiagrams" EntityType="QLXinViecModel.sysdiagram" />
+          <EntitySet Name="UserApplyJobs" EntityType="QLXinViecModel.UserApplyJob" />
+          <EntitySet Name="UserEducations" EntityType="QLXinViecModel.UserEducation" />
+          <EntitySet Name="UserPersonalProjects" EntityType="QLXinViecModel.UserPersonalProject" />
+          <EntitySet Name="UserProfiles" EntityType="QLXinViecModel.UserProfile" />
+          <EntitySet Name="UserWorkExperiences" EntityType="QLXinViecModel.UserWorkExperience" />
+          <EntitySet Name="YearExperiences" EntityType="QLXinViecModel.YearExperience" />
+          <AssociationSet Name="FK__CompanyProfi__Id__4CA06362" Association="QLXinViecModel.FK__CompanyProfi__Id__4CA06362">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="CompanyProfile" EntitySet="CompanyProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Mail__FromId__6EF57B66" Association="QLXinViecModel.FK__Mail__FromId__6EF57B66">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Mail" EntitySet="Mails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Mail__ToId__6FE99F9F" Association="QLXinViecModel.FK__Mail__ToId__6FE99F9F">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Mail" EntitySet="Mails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SocialPos__Accou__68487DD7" Association="QLXinViecModel.FK__SocialPos__Accou__68487DD7">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="SocialPost" EntitySet="SocialPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserProfile__Id__412EB0B6" Association="QLXinViecModel.FK__UserProfile__Id__412EB0B6">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyImage_CompanyProfile" Association="QLXinViecModel.FK_CompanyImage_CompanyProfile">
+            <End Role="CompanyProfile" EntitySet="CompanyProfiles" />
+            <End Role="CompanyImage" EntitySet="CompanyImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JobPost__Company__5165187F" Association="QLXinViecModel.FK__JobPost__Company__5165187F">
+            <End Role="CompanyProfile" EntitySet="CompanyProfiles" />
+            <End Role="JobPost" EntitySet="JobPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JobPost__Locatio__5070F446" Association="QLXinViecModel.FK__JobPost__Locatio__5070F446">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="JobPost" EntitySet="JobPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JobPost__YearExp__52593CB8" Association="QLXinViecModel.FK__JobPost__YearExp__52593CB8">
+            <End Role="YearExperience" EntitySet="YearExperiences" />
+            <End Role="JobPost" EntitySet="JobPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserApply__JobPo__59FA5E80" Association="QLXinViecModel.FK__UserApply__JobPo__59FA5E80">
+            <End Role="JobPost" EntitySet="JobPosts" />
+            <End Role="UserApplyJob" EntitySet="UserApplyJobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserApply__UserI__59063A47" Association="QLXinViecModel.FK__UserApply__UserI__59063A47">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="UserApplyJob" EntitySet="UserApplyJobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserEduca__UserI__440B1D61" Association="QLXinViecModel.FK__UserEduca__UserI__440B1D61">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="UserEducation" EntitySet="UserEducations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPerso__UserI__49C3F6B7" Association="QLXinViecModel.FK__UserPerso__UserI__49C3F6B7">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="UserPersonalProject" EntitySet="UserPersonalProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserWorkE__UserI__46E78A0C" Association="QLXinViecModel.FK__UserWorkE__UserI__46E78A0C">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="UserWorkExperience" EntitySet="UserWorkExperiences" />
+          </AssociationSet>
+          <AssociationSet Name="Following" Association="QLXinViecModel.Following">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Account1" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="JobSkill" Association="QLXinViecModel.JobSkill">
+            <End Role="JobPost" EntitySet="JobPosts" />
+            <End Role="Skill" EntitySet="Skills" />
+          </AssociationSet>
+          <AssociationSet Name="SocialPostSkill" Association="QLXinViecModel.SocialPostSkill">
+            <End Role="Skill" EntitySet="Skills" />
+            <End Role="SocialPost" EntitySet="SocialPosts" />
+          </AssociationSet>
+          <AssociationSet Name="UserFollowJob" Association="QLXinViecModel.UserFollowJob">
+            <End Role="JobPost" EntitySet="JobPosts" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="UserSkill" Association="QLXinViecModel.UserSkill">
+            <End Role="Skill" EntitySet="Skills" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="CompanyProfile" Relationship="QLXinViecModel.FK__CompanyProfi__Id__4CA06362" FromRole="Account" ToRole="CompanyProfile" />
+          <NavigationProperty Name="Mails" Relationship="QLXinViecModel.FK__Mail__FromId__6EF57B66" FromRole="Account" ToRole="Mail" />
+          <NavigationProperty Name="Mails1" Relationship="QLXinViecModel.FK__Mail__ToId__6FE99F9F" FromRole="Account" ToRole="Mail" />
+          <NavigationProperty Name="SocialPosts" Relationship="QLXinViecModel.FK__SocialPos__Accou__68487DD7" FromRole="Account" ToRole="SocialPost" />
+          <NavigationProperty Name="UserProfile" Relationship="QLXinViecModel.FK__UserProfile__Id__412EB0B6" FromRole="Account" ToRole="UserProfile" />
+          <NavigationProperty Name="Account1" Relationship="QLXinViecModel.Following" FromRole="Account" ToRole="Account1" />
+          <NavigationProperty Name="Accounts" Relationship="QLXinViecModel.Following" FromRole="Account1" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="CompanyImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="ImageContent" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="CompanyProfile" Relationship="QLXinViecModel.FK_CompanyImage_CompanyProfile" FromRole="CompanyImage" ToRole="CompanyProfile" />
+        </EntityType>
+        <EntityType Name="CompanyProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateEstablish" Type="DateTime" Precision="0" />
+          <Property Name="CompanySize" Type="Int32" />
+          <Property Name="CompanyLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Overview" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TaxCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BusinessLicense" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Account" Relationship="QLXinViecModel.FK__CompanyProfi__Id__4CA06362" FromRole="CompanyProfile" ToRole="Account" />
+          <NavigationProperty Name="CompanyImages" Relationship="QLXinViecModel.FK_CompanyImage_CompanyProfile" FromRole="CompanyProfile" ToRole="CompanyImage" />
+          <NavigationProperty Name="JobPosts" Relationship="QLXinViecModel.FK__JobPost__Company__5165187F" FromRole="CompanyProfile" ToRole="JobPost" />
+        </EntityType>
+        <EntityType Name="JobPost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RecruitmentNumber" Type="Int32" />
+          <Property Name="Salary" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Requirement" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Prioritize" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Benefit" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ExpireDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="YearExperienceId" Type="Int32" Nullable="false" />
+          <Property Name="LocationId" Type="Int32" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CompanyProfile" Relationship="QLXinViecModel.FK__JobPost__Company__5165187F" FromRole="JobPost" ToRole="CompanyProfile" />
+          <NavigationProperty Name="Location" Relationship="QLXinViecModel.FK__JobPost__Locatio__5070F446" FromRole="JobPost" ToRole="Location" />
+          <NavigationProperty Name="YearExperience" Relationship="QLXinViecModel.FK__JobPost__YearExp__52593CB8" FromRole="JobPost" ToRole="YearExperience" />
+          <NavigationProperty Name="UserApplyJobs" Relationship="QLXinViecModel.FK__UserApply__JobPo__59FA5E80" FromRole="JobPost" ToRole="UserApplyJob" />
+          <NavigationProperty Name="Skills" Relationship="QLXinViecModel.JobSkill" FromRole="JobPost" ToRole="Skill" />
+          <NavigationProperty Name="UserProfiles" Relationship="QLXinViecModel.UserFollowJob" FromRole="JobPost" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="JobPosts" Relationship="QLXinViecModel.FK__JobPost__Locatio__5070F446" FromRole="Location" ToRole="JobPost" />
+        </EntityType>
+        <EntityType Name="Mail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromId" Type="Int32" Nullable="false" />
+          <Property Name="ToId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AttachFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SendDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Account" Relationship="QLXinViecModel.FK__Mail__FromId__6EF57B66" FromRole="Mail" ToRole="Account" />
+          <NavigationProperty Name="Account1" Relationship="QLXinViecModel.FK__Mail__ToId__6FE99F9F" FromRole="Mail" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="JobPosts" Relationship="QLXinViecModel.JobSkill" FromRole="Skill" ToRole="JobPost" />
+          <NavigationProperty Name="SocialPosts" Relationship="QLXinViecModel.SocialPostSkill" FromRole="Skill" ToRole="SocialPost" />
+          <NavigationProperty Name="UserProfiles" Relationship="QLXinViecModel.UserSkill" FromRole="Skill" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="SocialPost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="QLXinViecModel.FK__SocialPos__Accou__68487DD7" FromRole="SocialPost" ToRole="Account" />
+          <NavigationProperty Name="Skills" Relationship="QLXinViecModel.SocialPostSkill" FromRole="SocialPost" ToRole="Skill" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserApplyJob">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="JobPostId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="JobPostId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CoverLetter" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AppliedAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CvAttachment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="JobPost" Relationship="QLXinViecModel.FK__UserApply__JobPo__59FA5E80" FromRole="UserApplyJob" ToRole="JobPost" />
+          <NavigationProperty Name="UserProfile" Relationship="QLXinViecModel.FK__UserApply__UserI__59063A47" FromRole="UserApplyJob" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="UserEducation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Major" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="From" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="To" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserProfile" Relationship="QLXinViecModel.FK__UserEduca__UserI__440B1D61" FromRole="UserEducation" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="UserPersonalProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="From" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="To" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserProfile" Relationship="QLXinViecModel.FK__UserPerso__UserI__49C3F6B7" FromRole="UserPersonalProject" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PersonalLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AboutMe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Account" Relationship="QLXinViecModel.FK__UserProfile__Id__412EB0B6" FromRole="UserProfile" ToRole="Account" />
+          <NavigationProperty Name="UserApplyJobs" Relationship="QLXinViecModel.FK__UserApply__UserI__59063A47" FromRole="UserProfile" ToRole="UserApplyJob" />
+          <NavigationProperty Name="UserEducations" Relationship="QLXinViecModel.FK__UserEduca__UserI__440B1D61" FromRole="UserProfile" ToRole="UserEducation" />
+          <NavigationProperty Name="UserPersonalProjects" Relationship="QLXinViecModel.FK__UserPerso__UserI__49C3F6B7" FromRole="UserProfile" ToRole="UserPersonalProject" />
+          <NavigationProperty Name="UserWorkExperiences" Relationship="QLXinViecModel.FK__UserWorkE__UserI__46E78A0C" FromRole="UserProfile" ToRole="UserWorkExperience" />
+          <NavigationProperty Name="JobPosts" Relationship="QLXinViecModel.UserFollowJob" FromRole="UserProfile" ToRole="JobPost" />
+          <NavigationProperty Name="Skills" Relationship="QLXinViecModel.UserSkill" FromRole="UserProfile" ToRole="Skill" />
+        </EntityType>
+        <EntityType Name="UserWorkExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobTitle" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="From" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="To" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserProfile" Relationship="QLXinViecModel.FK__UserWorkE__UserI__46E78A0C" FromRole="UserWorkExperience" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="YearExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="JobPosts" Relationship="QLXinViecModel.FK__JobPost__YearExp__52593CB8" FromRole="YearExperience" ToRole="JobPost" />
+        </EntityType>
+        <Association Name="FK__CompanyProfi__Id__4CA06362">
+          <End Type="QLXinViecModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="QLXinViecModel.CompanyProfile" Role="CompanyProfile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyProfile">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Mail__FromId__6EF57B66">
+          <End Type="QLXinViecModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="QLXinViecModel.Mail" Role="Mail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mail">
+              <PropertyRef Name="FromId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Mail__ToId__6FE99F9F">
+          <End Type="QLXinViecModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="QLXinViecModel.Mail" Role="Mail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mail">
+              <PropertyRef Name="ToId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SocialPos__Accou__68487DD7">
+          <End Type="QLXinViecModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="QLXinViecModel.SocialPost" Role="SocialPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SocialPost">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserProfile__Id__412EB0B6">
+          <End Type="QLXinViecModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="QLXinViecModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyImage_CompanyProfile">
+          <End Type="QLXinViecModel.CompanyProfile" Role="CompanyProfile" Multiplicity="1" />
+          <End Type="QLXinViecModel.CompanyImage" Role="CompanyImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyImage">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JobPost__Company__5165187F">
+          <End Type="QLXinViecModel.CompanyProfile" Role="CompanyProfile" Multiplicity="1" />
+          <End Type="QLXinViecModel.JobPost" Role="JobPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobPost">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JobPost__Locatio__5070F446">
+          <End Type="QLXinViecModel.Location" Role="Location" Multiplicity="1" />
+          <End Type="QLXinViecModel.JobPost" Role="JobPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobPost">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JobPost__YearExp__52593CB8">
+          <End Type="QLXinViecModel.YearExperience" Role="YearExperience" Multiplicity="1" />
+          <End Type="QLXinViecModel.JobPost" Role="JobPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YearExperience">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobPost">
+              <PropertyRef Name="YearExperienceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserApply__JobPo__59FA5E80">
+          <End Type="QLXinViecModel.JobPost" Role="JobPost" Multiplicity="1" />
+          <End Type="QLXinViecModel.UserApplyJob" Role="UserApplyJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobPost">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserApplyJob">
+              <PropertyRef Name="JobPostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserApply__UserI__59063A47">
+          <End Type="QLXinViecModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="QLXinViecModel.UserApplyJob" Role="UserApplyJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserApplyJob">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserEduca__UserI__440B1D61">
+          <End Type="QLXinViecModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="QLXinViecModel.UserEducation" Role="UserEducation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserEducation">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserPerso__UserI__49C3F6B7">
+          <End Type="QLXinViecModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="QLXinViecModel.UserPersonalProject" Role="UserPersonalProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPersonalProject">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserWorkE__UserI__46E78A0C">
+          <End Type="QLXinViecModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="QLXinViecModel.UserWorkExperience" Role="UserWorkExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserWorkExperience">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Following">
+          <End Type="QLXinViecModel.Account" Role="Account" Multiplicity="*" />
+          <End Type="QLXinViecModel.Account" Role="Account1" Multiplicity="*" />
+        </Association>
+        <Association Name="JobSkill">
+          <End Type="QLXinViecModel.JobPost" Role="JobPost" Multiplicity="*" />
+          <End Type="QLXinViecModel.Skill" Role="Skill" Multiplicity="*" />
+        </Association>
+        <Association Name="SocialPostSkill">
+          <End Type="QLXinViecModel.Skill" Role="Skill" Multiplicity="*" />
+          <End Type="QLXinViecModel.SocialPost" Role="SocialPost" Multiplicity="*" />
+        </Association>
+        <Association Name="UserFollowJob">
+          <End Type="QLXinViecModel.JobPost" Role="JobPost" Multiplicity="*" />
+          <End Type="QLXinViecModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+        </Association>
+        <Association Name="UserSkill">
+          <End Type="QLXinViecModel.Skill" Role="Skill" Multiplicity="*" />
+          <End Type="QLXinViecModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLXinViecModelStoreContainer" CdmEntityContainer="QLXinViecDFContext">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="QLXinViecModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyImages">
+            <EntityTypeMapping TypeName="QLXinViecModel.CompanyImage">
+              <MappingFragment StoreEntitySet="CompanyImage">
+                <ScalarProperty Name="ImageContent" ColumnName="ImageContent" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyProfiles">
+            <EntityTypeMapping TypeName="QLXinViecModel.CompanyProfile">
+              <MappingFragment StoreEntitySet="CompanyProfile">
+                <ScalarProperty Name="BusinessLicense" ColumnName="BusinessLicense" />
+                <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+                <ScalarProperty Name="Overview" ColumnName="Overview" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="CompanyLink" ColumnName="CompanyLink" />
+                <ScalarProperty Name="CompanySize" ColumnName="CompanySize" />
+                <ScalarProperty Name="DateEstablish" ColumnName="DateEstablish" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobPosts">
+            <EntityTypeMapping TypeName="QLXinViecModel.JobPost">
+              <MappingFragment StoreEntitySet="JobPost">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="YearExperienceId" ColumnName="YearExperienceId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="Benefit" ColumnName="Benefit" />
+                <ScalarProperty Name="Prioritize" ColumnName="Prioritize" />
+                <ScalarProperty Name="Requirement" ColumnName="Requirement" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="RecruitmentNumber" ColumnName="RecruitmentNumber" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="QLXinViecModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mails">
+            <EntityTypeMapping TypeName="QLXinViecModel.Mail">
+              <MappingFragment StoreEntitySet="Mail">
+                <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+                <ScalarProperty Name="AttachFile" ColumnName="AttachFile" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ToId" ColumnName="ToId" />
+                <ScalarProperty Name="FromId" ColumnName="FromId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skills">
+            <EntityTypeMapping TypeName="QLXinViecModel.Skill">
+              <MappingFragment StoreEntitySet="Skill">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SocialPosts">
+            <EntityTypeMapping TypeName="QLXinViecModel.SocialPost">
+              <MappingFragment StoreEntitySet="SocialPost">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QLXinViecModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserApplyJobs">
+            <EntityTypeMapping TypeName="QLXinViecModel.UserApplyJob">
+              <MappingFragment StoreEntitySet="UserApplyJob">
+                <ScalarProperty Name="CvAttachment" ColumnName="CvAttachment" />
+                <ScalarProperty Name="AppliedAt" ColumnName="AppliedAt" />
+                <ScalarProperty Name="CoverLetter" ColumnName="CoverLetter" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="JobPostId" ColumnName="JobPostId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserEducations">
+            <EntityTypeMapping TypeName="QLXinViecModel.UserEducation">
+              <MappingFragment StoreEntitySet="UserEducation">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="Major" ColumnName="Major" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPersonalProjects">
+            <EntityTypeMapping TypeName="QLXinViecModel.UserPersonalProject">
+              <MappingFragment StoreEntitySet="UserPersonalProject">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="QLXinViecModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
+                <ScalarProperty Name="PersonalLink" ColumnName="PersonalLink" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserWorkExperiences">
+            <EntityTypeMapping TypeName="QLXinViecModel.UserWorkExperience">
+              <MappingFragment StoreEntitySet="UserWorkExperience">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YearExperiences">
+            <EntityTypeMapping TypeName="QLXinViecModel.YearExperience">
+              <MappingFragment StoreEntitySet="YearExperience">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Following" TypeName="QLXinViecModel.Following" StoreEntitySet="Following">
+            <EndProperty Name="Account1">
+              <ScalarProperty Name="Id" ColumnName="FollowedId" />
+            </EndProperty>
+            <EndProperty Name="Account">
+              <ScalarProperty Name="Id" ColumnName="FollowingId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="JobSkill" TypeName="QLXinViecModel.JobSkill" StoreEntitySet="JobSkill">
+            <EndProperty Name="Skill">
+              <ScalarProperty Name="Id" ColumnName="SkillId" />
+            </EndProperty>
+            <EndProperty Name="JobPost">
+              <ScalarProperty Name="Id" ColumnName="JobPostId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SocialPostSkill" TypeName="QLXinViecModel.SocialPostSkill" StoreEntitySet="SocialPostSkill">
+            <EndProperty Name="SocialPost">
+              <ScalarProperty Name="Id" ColumnName="SocialPostId" />
+            </EndProperty>
+            <EndProperty Name="Skill">
+              <ScalarProperty Name="Id" ColumnName="SkillId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserFollowJob" TypeName="QLXinViecModel.UserFollowJob" StoreEntitySet="UserFollowJob">
+            <EndProperty Name="UserProfile">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="JobPost">
+              <ScalarProperty Name="Id" ColumnName="JobPostId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserSkill" TypeName="QLXinViecModel.UserSkill" StoreEntitySet="UserSkill">
+            <EndProperty Name="UserProfile">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="Skill">
+              <ScalarProperty Name="Id" ColumnName="SkillId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
